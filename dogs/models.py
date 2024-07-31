@@ -39,6 +39,16 @@ class Dog(models.Model):
     bio=models.TextField(blank=True,null=True)
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.address:
+            g = GeoIP2()
+            location = g.lat_lon(self.address)
+            if location:
+                self.latitude, self.longitude = location
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
