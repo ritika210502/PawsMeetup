@@ -29,11 +29,19 @@ def ai_match_dogs(request,dog_id):
     target_dog=get_object_or_404(Dog,id=dog_id)
     dogs=preprocess_data()
     model,scaler=train_knn_model(dogs)
-    matched_dogs = match_dogs_knn(dog_id, model, scaler)
+    matched_dogs_df = match_dogs_knn(dog_id, model, scaler)
 
-    from django.template.utils import get_app_template_dirs
-    from django.template import engines
-    django_engine = engines['django']
-    print("Template directories:", django_engine.engine.dirs)
-    
-    return render(request,'ai_match_results.html',{'target_dog':target_dog,'matching_dogs':matched_dogs})
+    # Convert DataFrame to a list of dictionaries
+    matched_dogs = matched_dogs_df.to_dict(orient='records')
+
+    # print("Target Dog:", target_dog)
+    # print(matched_dogs_df.dtypes)
+
+
+    # Prepare context
+    context = {
+        'target_dog': target_dog,
+        'matched_dogs': matched_dogs
+    }
+
+    return render(request, 'dogs/ai_match_results.html', context)
