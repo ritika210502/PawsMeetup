@@ -5,6 +5,7 @@ from datetime import date
 # Create your models here.
 class Breed(models.Model):
     name=models.CharField(max_length=50)
+
     def __str__(self):
         return self.name
     
@@ -41,6 +42,8 @@ class Dog(models.Model):
     update_at=models.DateTimeField(auto_now=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
+    # owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
 
     def save(self, *args, **kwargs):
         if self.address:
