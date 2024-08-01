@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import date
 
 
@@ -36,13 +37,13 @@ class Dog(models.Model):
     temperament=models.CharField(max_length=10,choices=TEMPERAMENT_CHOICES)
     address=models.CharField(max_length=150)
     vaccination_status=models.BooleanField(default=False)
-    photo=models.ImageField(upload_to='dog_photos/',blank=True,null=True)
+    photo=models.ImageField(upload_to='dog_photos/',default="/static/images/dog_logo.png",blank=True,null=True)
     bio=models.TextField(blank=True,null=True)
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
-    # owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
 
     def save(self, *args, **kwargs):

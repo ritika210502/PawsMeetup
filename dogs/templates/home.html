@@ -1,9 +1,71 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-<div class="container">
-  <h1 class="mt-4">Welcome to PawsMeetup</h1>
-  <p>Your go-to platform for dog socialization and playdates.</p>
-  <p><a href="{% url 'profile' %}" class="btn btn-primary">Go to Your Profile</a></p>
+
+<!-- Hero Section -->
+<div class="hero-section text-center py-5">
+    <div class="container">
+        <h1 class="display-3 mb-3">Welcome to PawsMeetup!</h1>
+        <p class="lead mb-4">Find the perfect playmate for your dog. Register and start matching now!</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'register' %}" role="button">Get Started</a>
+    </div>
 </div>
+
+<!-- Features Section -->
+<section class="features py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon mb-3">
+                    <img src="{% static 'images/dog_pair.jpg' %}" alt="Feature 1" class="img-fluid">
+                </div>
+                <h4>Find Matches</h4>
+                <p>Connect with other dogs based on breed, size, and temperament.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon mb-3">
+                    <img src="{% static 'images/dog_group.jpg' %}" alt="Feature 2" class="img-fluid">
+                </div>
+                <h4>Track Playdates</h4>
+                <p>Schedule and keep track of playdates with ease.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon mb-3">
+                    <img src="{% static 'images/logo.png' %}" alt="Feature 3" class="img-fluid">
+                </div>
+                <h4>Profile Management</h4>
+                <p>Manage your dog's profile and preferences seamlessly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">What Our Users Say</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial p-4 bg-white rounded">
+                    <p class="mb-3">"PawsMeetup helped me find the perfect playmate for my dog. The process was so easy and efficient!"</p>
+                    <footer class="blockquote-footer">John Doe</footer>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial p-4 bg-white rounded">
+                    <p class="mb-3">"A fantastic platform for dog owners. My dog loves his new friends, and the scheduling feature is top-notch."</p>
+                    <footer class="blockquote-footer">Jane Smith</footer>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial p-4 bg-white rounded">
+                    <p class="mb-3">"Great user experience and seamless matching process. Highly recommend it to all dog owners."</p>
+                    <footer class="blockquote-footer">Emily Johnson</footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

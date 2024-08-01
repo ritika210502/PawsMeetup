@@ -1,28 +1,23 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="container">
-    <h1>Dog List</h1>
-    <a href="{% url 'add_dog' %}" class="btn btn-primary mb-3">Add New Dog</a>
-    <ul class="list-group">
-        {% for dog in dogs %}
-        <li class="list-group-item">
-            {% if dog.photo %}
-                <img src="{{ dog.photo.url }}" alt="{{ dog.name }}" width="100" class="img-thumbnail">
-            {% endif %}
-            <h2>{{ dog.name }}</h2>
-            <p><strong>Breed:</strong> {{ dog.breed }}</p>
-            <p><strong>DOB:</strong> {{ dog.dob }}</p>
-            <p><strong>Age:</strong> {{ dog.age }}</p>
-            <p><strong>Gender:</strong> {{ dog.get_gender_display }}</p>
-            <p><strong>Size:</strong> {{ dog.get_size_display }}</p>
-            <p><strong>Energy Level:</strong> {{ dog.get_energy_level_display }}</p>
-            <p><strong>Temperament:</strong> {{ dog.get_temperament_display }}</p>
-            <p><strong>Address:</strong> {{ dog.address }}</p>
-            <p><strong>Vaccinated:</strong> {{ dog.vaccination_status }}</p>
-            <p><strong>Bio:</strong> {{ dog.bio }}</p>
-        </li>
-        {% endfor %}
-    </ul>
+<h1 class="mb-4">All Dogs</h1>
+<div class="row">
+    {% for dog in dogs %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{% if dog.photo %}{{ dog.photo.url }}{% else %}{% static 'images/default_dog_image.png' %}{% endif %}" class="card-img-top" alt="{{ dog.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ dog.name }}</h5>
+                <p class="card-text">Breed: {{ dog.breed.name }}</p>
+                <p class="card-text">Size: {{ dog.size }}</p>
+                <a href="{% url 'ai_match_dogs' dog.id %}" class="btn btn-primary">Find Matches</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No dogs found.</p>
+    {% endfor %}
 </div>
 {% endblock %}

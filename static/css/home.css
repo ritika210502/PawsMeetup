@@ -1,0 +1,194 @@
+/* Global Styles */
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  color: #333; /* General text color for readability */
+}
+
+/* Jumbotron */
+.jumbotron {
+  background-color: #b5b8bb; /* Light grey background for a soft look */
+  padding: 2rem;
+  border-radius: 0.3rem; /* Rounded corners for the jumbotron */
+}
+
+.jumbotron h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.jumbotron p {
+  font-size: 1.25rem;
+  font-weight: 300; /* Lighter weight for the lead paragraph */
+}
+
+.jumbotron .btn-primary {
+  background-color: #007bff; /* Bootstrap primary color */
+  border: none;
+}
+
+.jumbotron .btn-primary:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+/* Navbar */
+.navbar {
+  margin-bottom: 20px;
+  background-color: #007bff; /* Matching navbar color with the button */
+}
+
+.navbar-brand {
+  color: #fff;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #e9ecef; /* Light color for hover effect */
+}
+
+/* Hero Section */
+.hero-section {
+  background: url("../images/hero-background.jpg") no-repeat center center;
+  background-size: cover;
+  color: #333;
+  text-align: center;
+  padding: 5rem 2rem;
+  border-radius: 0.3rem;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+}
+
+/* Card Images */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.3rem;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feature-icon img {
+  max-width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* Ensure all feature divs have equal height */
+.features .col-md-4 {
+  display: flex;
+  flex-direction: column;
+}
+
+.features .feature-icon, 
+.features h4, 
+.features p {
+  flex: 1;
+}
+
+.features .feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .jumbotron {
+    padding: 1rem;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1.25rem;
+  }
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 3rem 0;
+  background-color: #a92828; /* Background color for the testimonials section */
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: black; /* Color for the heading to stand out against the background */
+  text-align: center; /* Center-align heading */
+}
+
+.testimonial-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center-align testimonial cards */
+}
+
+.testimonial {
+  background-color: #ffffff; /* White background for individual testimonials */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  padding: 2rem;
+  text-align: center;
+  margin: 1rem; /* Margin between cards */
+  flex: 1; /* Allow cards to grow and shrink as needed */
+  min-width: 250px; /* Minimum width for each card */
+  max-width: 300px; /* Maximum width for each card */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+}
+
+.testimonial:nth-child(1) {
+  background-color: #f8f9fa; /* Light grey background for the first card */
+}
+
+.testimonial:nth-child(2) {
+  background-color: #e9ecef; /* Slightly darker grey background for the second card */
+}
+
+.testimonial:nth-child(3) {
+  background-color: #dee2e6; /* Even darker grey background for the third card */
+}
+
+.testimonial:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.testimonial p {
+  font-size: 1rem;
+  color: #555; /* Darker text color for readability */
+  margin-bottom: 1rem;
+}
+
+.testimonial footer {
+  font-size: 0.875rem;
+  color: #888; /* Lighter color for the footer */
+  font-style: italic;
+}
+
