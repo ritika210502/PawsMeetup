@@ -7,6 +7,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('add/',views.add_dog,name='add_dog'),
     path('dog_list/',views.dog_list,name='dog_list'),
-
-    path('ai-match/<int:dog_id>/', views.ai_match_dogs, name='ai_match_dogs'),
+    path('password/', views.password, name='password'),
+    path('ai-match/', views.ai_match_dogs, name='ai_match_dogs'),
+    #  path('ai-match/<int:dog_id>/', views.ai_match_dogs, name='ai_match_dogs'),
 ]

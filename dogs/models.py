@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.gis.geoip2 import GeoIP2  # Import GeoIP2
 from datetime import date
-
 
 # Create your models here.
 class Breed(models.Model):
@@ -46,13 +46,13 @@ class Dog(models.Model):
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
 
-    def save(self, *args, **kwargs):
-        if self.address:
-            g = GeoIP2()
-            location = g.lat_lon(self.address)
-            if location:
-                self.latitude, self.longitude = location
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.address:
+    #         g = GeoIP2()
+    #         location = g.lat_lon(self.address)
+    #         if location:
+    #             self.latitude, self.longitude = location
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

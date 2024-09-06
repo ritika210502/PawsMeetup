@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% block extra_styles%}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% comment %} <script src="{% static 'js/home.js' %}" defer></script> {% endcomment %}
+{% endblock%}
 
 {% block content %}
 

@@ -3,5 +3,35 @@
 {% block content %}
 <h1 class="mb-4">User Profile</h1>
 <p>Welcome, {{ user.username }}!</p>
-<a href="{% url 'add_dog' %}" class="btn btn-primary">Add a Dog</a>
+
+{% if dog %}
+    <h2>Your Dog</h2>
+    <div>
+        {% if dog.photo %}
+            <img src="{{ dog.photo.url }}" alt="{{ dog.name }}" style="max-width: 200px;">
+        {% endif %}
+
+        <p><strong>Name:</strong> {{ dog.name }}</p>
+        <p><strong>Breed:</strong> {{ dog.breed.name }}</p>
+        <p><strong>Date of Birth:</strong> {{ dog.dob }}</p>
+        <p><strong>Gender:</strong> {{ dog.gender }}</p>
+        <p><strong>Size:</strong> {{ dog.size }}</p>
+        <p><strong>Energy Level:</strong> {{ dog.energy_level }}</p>
+        <p><strong>Temperament:</strong> {{ dog.temperament }}</p>
+        <p><strong>Address:</strong> {{ dog.address }}</p>
+        <p><strong>Vaccination Status:</strong> {{ dog.vaccination_status|yesno:"Yes,No" }}</p>
+        <p><strong>Bio:</strong> {{ dog.bio }}</p>
+
+        
+    </div>
+    {% comment %} <a href="{% url 'edit_dog' dog.id %}" class="btn btn-primary">Edit Dog</a> {% endcomment %}
+{% else %}
+    <h2>Add a Dog</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Dog</button>
+    </form>
+{% endif %}
+
 {% endblock %}

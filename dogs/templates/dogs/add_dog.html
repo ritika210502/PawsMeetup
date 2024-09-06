@@ -1,12 +1,68 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/add_dog.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Add a New Dog</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Add Dog</button>
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-light">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Add a New Dog</h1>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_name">Dog's Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_breed">Breed</label>
+                            {{ form.breed }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_dob">Date of Birth</label>
+                            {{ form.dob }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_gender">Gender</label>
+                            {{ form.gender }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_size">Size</label>
+                            {{ form.size }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_energy_level">Energy Level</label>
+                            {{ form.energy_level }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_temperament">Temperament</label>
+                            {{ form.temperament }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_address">Address</label>
+                            {{ form.address }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_vaccination_status">Vaccination Status</label>
+                            {{ form.vaccination_status }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_photo">Photo</label>
+                            {{ form.photo }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_bio">Bio</label>
+                            {{ form.bio }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add Dog</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

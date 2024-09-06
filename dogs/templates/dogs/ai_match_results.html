@@ -2,43 +2,47 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="mt-4">Matching Results for {{ target_dog.name }}</h1>
-  <h2>Matching Dogs:</h2>
-
-  <!-- Filter Form (commented out) -->
-  {% comment %}
-  <form method="get" action="{% url 'ai_match_dogs' target_dog.id %}">
-    <div class="form-group">
+  {% if target_dog %}
+    <h1 class="mt-4">Matching Results for {{ target_dog.name }}</h1>
+    <h2>Matching Dogs:</h2>
+{% comment %} 
+    
+    <form method="get" action="{% url 'ai_match_dogs' target_dog.id %}">
+      <div class="form-group">
         <label for="size">Size:</label>
         <select name="size" id="size" class="form-control">
-            <option value="">Select Size</option>
-            <option value="0">Small</option>
-            <option value="1">Medium</option>
-            <option value="2">Large</option>
+          <option value="">Select Size</option>
+          <option value="0">Small</option>
+          <option value="1">Medium</option>
+          <option value="2">Large</option>
         </select>
-    </div>
-    <button type="submit" class="btn btn-primary mt-2">Filter</button>
-  </form>
-  {% endcomment %}
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Filter</button>
+    </form> {% endcomment %}
 
-  <div class="row">
-    {% for dog in matched_dogs %}
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <!-- Ensure photo is provided; otherwise, fallback to a default image -->
-        <img src="{{ dog.photo.url }}" class="card-img-top" alt="{{ dog.name }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ dog.name }}</h5>
-          <p class="card-text">Breed: {{ dog.breed }}</p>
-          <p class="card-text">Size: {{ dog.size }}</p>
-          <p class="card-text">Energy Level: {{ dog.energy_level }}</p>
-          <p class="card-text">Temperament: {{ dog.temperament }}</p>
+    <div class="row">
+      {% for dog in matched_dogs %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <!-- Ensure photo is provided; otherwise, fallback to a default image -->
+          <img src="{{ dog.photo.url }}" class="card-img-top" alt="{{ dog.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ dog.name }}</h5>
+            <p class="card-text">Breed: {{ dog.breed }}</p>
+            <p class="card-text">Size: {{ dog.size }}</p>
+            <p class="card-text">Energy Level: {{ dog.energy_level }}</p>
+            <p class="card-text">Temperament: {{ dog.temperament }}</p>
+          </div>
         </div>
       </div>
+      {% empty %}
+      <p>No matching dogs found.</p>
+      {% endfor %}
     </div>
-    {% empty %}
-    <p>No matching dogs found.</p>
-    {% endfor %}
-  </div>
+  {% else %}
+    <h1 class="mt-4">No Dog Found</h1>
+    <p>Please select a dog to view matches.</p>
+    <a href="{% url 'dog_list' %}" class="btn btn-primary">View My Dogs</a>
+  {% endif %}
 </div>
 {% endblock %}
