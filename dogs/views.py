@@ -76,6 +76,30 @@ def add_dog(request):
         form=DogForm()
     return render(request,'dogs/add_dog.html',{'form':form})
 
+@login_required
+def edit_dog(request, dog_id):
+    dog=get_object_or_404(Dog,id=dog_id,owner=request.user)
+
+    if request.method=="POST":
+        form=DogForm(request.POST,request.FILES,instance=dog)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form=DogForm(instance=dog)
+        
+    return render(request,'dogs/edit_dog.html',{'form':form,'dog':dog})
+
+@login_required
+def delete_dog(request, dog_id):
+    dog=get_object_or_404(Dog,id=dog_id,owner=request.user)
+    if request.method=="POST":
+        dog.delete()
+        return redirect('profile')
+
+    return render(request, 'dogs/delete_dog.html', {'dog': dog})
+        
+
 def dog_list(request):
     dogs = Dog.objects.all()
     return render(request, 'dogs/dog_list.html', {'dogs': dogs})

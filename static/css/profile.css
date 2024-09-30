@@ -1,76 +1,122 @@
 body {
-    background-color: #f0f4f8; /* Soft background color */
-    font-family: 'Roboto', sans-serif; /* Font style */
+    font-family: 'Poppins', sans-serif; /* Elegant, modern font */
+    background-color: #f6d7a9; /* Light background for contrast */
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
-    color: #2c3e50; /* Darker header color */
-    font-weight: 700; /* Bold header */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Profile Header Styling */
+h1, h2 {
+    font-family:'Times New Roman', Times, serif;
+    color: red; /* Primary color for headings */
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: solid;
 }
 
 h2 {
-    color: #34495e; /* Lighter header color for subheadings */
-    margin-top: 30px; /* Space above subheading */
+    font-size: 1.5rem;
 }
 
-.text-center {
+/* Dog Information Section */
+.dog-info {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.dog-info p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.dog-info img {
+    border-radius: 10px;
+    max-width: 200px;
     margin-bottom: 20px;
 }
 
-.profile-picture {
-    margin-top: 30px;
-    margin-bottom: 20px;
+
+/* Style for the Add Dog form */
+.add-dog-form {
+    background-image: url('../images/dog_background.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    color: white;
+    max-width: 600px; /* Set max width */
+    margin: 0 auto; /* Center the form horizontally */
+    max-height: 500px; /* Set max height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
 }
 
-.profile-picture img {
-    border: 5px solid #007bff; /* Blue border for profile picture */
-    width: 150px; /* Fixed width for profile image */
-    height: 150px; /* Fixed height for profile image */
+.add-dog-form input,
+.add-dog-form textarea,
+.add-dog-form select {
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.add-dog-form button {
+    background-color: rgb(4, 179, 4);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 0.5rem;
+    border: none;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    width: 100%; /* Make button full width */
+}
+
+.add-dog-form button:hover {
+    background-color: #ff3700;
 }
 
 .card {
     border-radius: 1rem;
-    border: 1px solid #007bff; /* Border color for the card */
+    border: 1px solid #007bff;
 }
 
 .card-body {
-    background-color: #ffffff; /* White background for card */
+    background-color: #ffffff;
 }
 
 .card-title {
     font-size: 1.8rem;
-    color: #007bff; /* Blue color for dog name */
+    color: #007bff;
     margin-bottom: 1rem;
-    font-family: 'Montserrat', sans-serif; /* Font style for title */
-}
-
-.btn-primary {
-    background-color: #007bff; /* Primary button color */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease; /* Smooth transition */
-}
-
-.btn-primary:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-.border {
-    border: 2px solid #007bff; /* Border color for forms */
-}
-
-.shadow-sm {
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Subtle shadow */
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .add-dog-form {
+        max-width: 100%; /* Make form responsive on small screens */
+        max-height: none; /* Allow form to grow naturally on mobile */
+    }
     .profile-picture img {
-        width: 100px; /* Smaller size for mobile */
-        height: 100px; /* Smaller size for mobile */
+        width: 100px;
+        height: 100px;
     }
     .card-title {
-        font-size: 1.5rem; /* Adjust card title size for mobile */
+        font-size: 1.5rem;
     }
 }

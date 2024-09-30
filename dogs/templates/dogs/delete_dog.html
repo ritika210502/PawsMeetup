@@ -1,0 +1,17 @@
+<!-- delete_dog.html -->
+{% extends 'base.html' %}
+
+{% block title %}Delete Dog - PawsMeetup{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Are you sure you want to delete {{ dog.name }}?</h1>
+    <p>This action cannot be undone.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

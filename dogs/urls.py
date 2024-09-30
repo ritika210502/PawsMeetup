@@ -9,5 +9,8 @@ urlpatterns = [
     path('dog_list/',views.dog_list,name='dog_list'),
     path('password/', views.password, name='password'),
     path('ai-match/', views.ai_match_dogs, name='ai_match_dogs'),
+    path('edit_dog/<int:dog_id>/',views.edit_dog,name='edit_dog'),
+    path('delete_dog/<int:dog_id>/',views.delete_dog,name='delete_dog'),
+
     #  path('ai-match/<int:dog_id>/', views.ai_match_dogs, name='ai_match_dogs'),
 ]
