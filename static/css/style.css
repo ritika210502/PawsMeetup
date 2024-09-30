@@ -1,0 +1,8 @@
+.main-container {
+    background-image: url('../images/background.jpg');
+    background-size: cover;  
+    background-position: center;  
+    padding: 20px; 
+    margin: 20px;
+    align-content: center;
+}

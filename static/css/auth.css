@@ -1,44 +1,100 @@
-/* auth.css */
-
+/* Base Styles */
 body {
-    background-color: #f4f7f6;
-    font-family: Arial, sans-serif;
-    color: #333;
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container {
-    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 15px; /* Add some padding for smaller screens */
 }
 
 .card {
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.card-body {
-    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure the card takes full width on small screens */
+    max-width: 500px; /* Increased max width for larger screens */
 }
 
 .card-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 1rem;
+    text-align: center; /* Center title */
 }
 
-.btn-block {
+img#dog_pair_img {
     width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.btn-primary {
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* Center the input icon vertically */
+.input-icon {
+    position: absolute;
+    top: 50%; /* Center the icon vertically */
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #ff7878;
+}
+
+/* Adjust password icon color */
+.password-icon {
+    color: #ff7878;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 15px 10px 40px; /* Add left padding to make space for icon */
+    font-size: 1rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    color: #333333;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.1);
+}
+
+button[type="submit"] {
+    width: 100%;
     background-color: #007bff;
     border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    padding: 12px;
+    font-size: 1rem;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.btn-primary:hover {
+button[type="submit"]:hover {
     background-color: #0056b3;
+    box-shadow: 0px 6px 12px rgba(0, 123, 255, 0.2);
 }
 
 .text-center a {
@@ -50,13 +106,73 @@ body {
     text-decoration: underline;
 }
 
-/* Responsive Design */
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .container {
-        padding: 1rem;
+    .card {
+        padding: 20px;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
     }
 
-    .card-body {
-        padding: 1rem;
+    .form-group input {
+        padding: 10px 15px 10px 35px; /* Adjust padding for smaller screens */
+        font-size: 0.95rem;
     }
+
+    .input-icon {
+        font-size: 1rem;
+    }
+
+    button[type="submit"] {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        padding: 15px;
+    }
+    
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .form-group input {
+        padding: 10px 15px 10px 30px; /* Adjust padding for smaller screens */
+        font-size: 0.9rem;
+    }
+
+    .input-icon {
+        font-size: 0.9rem;
+    }
+
+    button[type="submit"] {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+.text-danger {
+    color: red; /* Error message color */
+    font-size: 0.875rem; /* Slightly smaller font size */
+    margin-top: 0.25rem; /* Spacing above error messages */
+    margin-left: 40px; /* Align with input field */
+}
+
+.logo-container {
+    position: relative; /* Allows for proper alignment */
+    width: 100%; /* Full width for responsiveness */
+}
+
+.logo-image {
+    width: 80%; /* Adjust the width as necessary */
+    max-width: 250px; /* Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the logo */
+    display: block; /* Block display for centering */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }

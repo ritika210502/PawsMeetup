@@ -1,26 +1,67 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
 {% load static %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register - PawsMeetup{% endblock %}
 
 {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-light">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-light">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Register</h2>
+
+                    <div class="logo-container text-center mb-4">
+                        <img src="{% static 'images/logo2.png' %}" alt="PawsMeetup Logo" class="img-fluid logo-image">
+                    </div>
+                    
+                    <h2 style="color:red;" class="card-title text-center">Join PawsMeetup</h2>
+
                     <form method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        {{ form.non_field_errors }}
+                        <div class="form-group {% if form.username.errors %}error{% endif %}">
+                            <i class="fas fa-user input-icon"></i>
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="text-danger">{{ form.username.errors }}</div>  <!-- Display field errors -->
+                            {% endif %}
+                        </div>
+                        <div class="form-group {% if form.email.errors %}error{% endif %}">
+                            <i class="fas fa-envelope input-icon"></i>
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="text-danger">{{ form.email.errors }}</div>  <!-- Display field errors -->
+                            {% endif %}
+                        </div>
+                        <div class="form-group {% if form.password1.errors %}error{% endif %}">
+                            <i class="fas fa-lock input-icon password-icon"></i>
+                            {{ form.password1.label_tag }}
+                            {{ form.password1 }}
+                            {% if form.password1.errors %}
+                                <div class="text-danger">{{ form.password1.errors }}</div>  <!-- Display field errors -->
+                            {% endif %}
+                        </div>
+                        <div class="form-group {% if form.password2.errors %}error{% endif %}">
+                            <i class="fas fa-lock input-icon password-icon"></i>
+                            {{ form.password2.label_tag }}
+                            {{ form.password2 }}
+                            {% if form.password2.errors %}
+                                <div class="text-danger">{{ form.password2.errors }}</div>  <!-- Display field errors -->
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-4">Create Account</button>
                     </form>
                     <div class="text-center mt-3">
-                        <a href="{% url 'login' %}">Already have an account? Login</a>
+                        <p>Already a member? 
+                            <a href="{% url 'login' %}">Login now</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -28,4 +69,3 @@
     </div>
 </div>
 {% endblock %}
-

@@ -1,37 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile - PawsMeetup{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">User Profile</h1>
-<p>Welcome, {{ user.username }}!</p>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">User Profile</h1>
+    <p class="text-center">Welcome, <strong>{{ user.username }}</strong>!</p>
 
-{% if dog %}
-    <h2>Your Dog</h2>
-    <div>
-        {% if dog.photo %}
-            <img src="{{ dog.photo.url }}" alt="{{ dog.name }}" style="max-width: 200px;">
-        {% endif %}
-
-        <p><strong>Name:</strong> {{ dog.name }}</p>
-        <p><strong>Breed:</strong> {{ dog.breed.name }}</p>
-        <p><strong>Date of Birth:</strong> {{ dog.dob }}</p>
-        <p><strong>Gender:</strong> {{ dog.gender }}</p>
-        <p><strong>Size:</strong> {{ dog.size }}</p>
-        <p><strong>Energy Level:</strong> {{ dog.energy_level }}</p>
-        <p><strong>Temperament:</strong> {{ dog.temperament }}</p>
-        <p><strong>Address:</strong> {{ dog.address }}</p>
-        <p><strong>Vaccination Status:</strong> {{ dog.vaccination_status|yesno:"Yes,No" }}</p>
-        <p><strong>Bio:</strong> {{ dog.bio }}</p>
-
-        
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <div class="profile-picture">
+                {% if dog %}
+                    {% if dog.photo %}
+                        <img src="{{ dog.photo.url }}" alt="{{ dog.name }}" class="img-fluid rounded-circle">
+                    {% else %}
+                        <img src="{% static 'images/default_dog_image.jpg' %}" alt="Default Dog" class="img-fluid rounded-circle">
+                    {% endif %}
+                {% else %}
+                    <img src="{% static 'images/default_dog_image.jpg' %}" alt="Default Dog" class="img-fluid rounded-circle">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            {% if dog %}
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dog.name }}</h5>
+                        <p><strong>Breed:</strong> {{ dog.breed.name }}</p>
+                        <p><strong>Date of Birth:</strong> {{ dog.dob }}</p>
+                        <p><strong>Gender:</strong> {{ dog.gender }}</p>
+                        <p><strong>Size:</strong> {{ dog.size }}</p>
+                        <p><strong>Energy Level:</strong> {{ dog.energy_level }}</p>
+                        <p><strong>Temperament:</strong> {{ dog.temperament }}</p>
+                        <p><strong>Address:</strong> {{ dog.address }}</p>
+                        <p><strong>Vaccination Status:</strong> {{ dog.vaccination_status|yesno:"Yes,No" }}</p>
+                        <p><strong>Bio:</strong> {{ dog.bio }}</p>
+                        <div class="text-center">
+                            <a href="{% url 'edit_dog' dog.id %}" class="btn btn-primary">Edit Dog</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <h2>Add a Dog</h2>
+                <form method="post" enctype="multipart/form-data" class="border p-4 rounded bg-light shadow-sm">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Add Dog</button>
+                </form>
+            {% endif %}
+        </div>
     </div>
-    {% comment %} <a href="{% url 'edit_dog' dog.id %}" class="btn btn-primary">Edit Dog</a> {% endcomment %}
-{% else %}
-    <h2>Add a Dog</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Add Dog</button>
-    </form>
-{% endif %}
-
+</div>
 {% endblock %}

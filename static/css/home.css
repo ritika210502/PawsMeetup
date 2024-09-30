@@ -1,194 +1,202 @@
-/* Global Styles */
-*{
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 body {
-  font-family: Arial, sans-serif;
-  color: #333; /* General text color for readability */
+  font-family: 'Arial', sans-serif;
+  color: #333; 
 }
 
-/* Jumbotron */
-.jumbotron {
-  background-color: #b5b8bb; /* Light grey background for a soft look */
-  padding: 2rem;
-  border-radius: 0.3rem; /* Rounded corners for the jumbotron */
+/* Carousel Container */
+#dogMeetupCarousel {
+  height: 80vh; /* Set to a taller height for desktop */
+  overflow: hidden; /* Prevent overflow */
 }
 
-.jumbotron h1 {
-  font-size: 3rem;
-  font-weight: bold;
+/* Carousel Images */
+#dogMeetupCarousel .carousel-item img {
+  width: 100%; /* Full width */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
 }
 
-.jumbotron p {
-  font-size: 1.25rem;
-  font-weight: 300; /* Lighter weight for the lead paragraph */
+/* Adjust the caption positioning */
+.carousel-caption {
+  bottom: 50%; /* Position the caption higher */
+  left: 50%; /* Center the caption */
+  transform: translateX(-50%); /* Centering adjustment */
+  text-align: center; /* Center text */
+  color: white; /* Improve readability */
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for better visibility */
+  padding: 1rem; /* Add padding for aesthetics */
+  border-radius: 0.5rem; /* Rounded corners */
 }
 
-.jumbotron .btn-primary {
-  background-color: #007bff; /* Bootstrap primary color */
+/* Button Styles */
+.btn-primary {
+  background-color: #ff4d00; /* Button color */
   border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  transition: background-color 0.3s ease;
 }
 
-.jumbotron .btn-primary:hover {
-  background-color: #0056b3; /* Darker shade for hover effect */
-}
-
-/* Navbar */
-.navbar {
-  margin-bottom: 20px;
-  background-color: #007bff; /* Matching navbar color with the button */
-}
-
-.navbar-brand {
-  color: #fff;
-  font-weight: bold;
-}
-
-.navbar-nav .nav-link {
-  color: #fff;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #e9ecef; /* Light color for hover effect */
-}
-
-/* Hero Section */
-.hero-section {
-  background: url("../images/hero-background.jpg") no-repeat center center;
-  background-size: cover;
-  color: #333;
-  text-align: center;
-  padding: 5rem 2rem;
-  border-radius: 0.3rem;
-}
-
-.hero-section h1 {
-  font-size: 3.5rem;
-  font-weight: bold;
-}
-
-.hero-section p {
-  font-size: 1.5rem;
-}
-
-/* Card Images */
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-  border-radius: 0.3rem;
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker on hover */
 }
 
 /* Features Section */
 .features {
-  display: flex;
-  flex-wrap: wrap;
+  background-color: #f8f9fa; 
+  padding: 4rem 0;
 }
 
-.feature-icon img {
-  max-width: 80px;
-  height: auto;
-  margin-bottom: 1rem;
+.features h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #333;
 }
 
-/* Ensure all feature divs have equal height */
-.features .col-md-4 {
-  display: flex;
-  flex-direction: column;
+.feature-card {
+  background: #ffffff; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s, box-shadow 0.3s; 
+  padding: 1.5rem; 
 }
 
-.features .feature-icon, 
-.features h4, 
-.features p {
-  flex: 1;
+.feature-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
 
-.features .feature-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.feature-card img {
+  height: 150px; 
+  object-fit: cover; 
+  border-radius: 0.5rem; 
 }
 
+.how-it-works {
+  padding: 4rem 0;
+}
 
+.how-it-works h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #333;
+  text-align: center;
+}
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .jumbotron {
-    padding: 1rem;
-  }
+/* Step Image Styling */
+.step {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-  .hero-section {
-    padding: 3rem 1rem;
-  }
+.step img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 50%; 
+  border: 5px solid #ff4d00; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
 
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
+.step img:hover {
+  transform: scale(1.1); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+}
 
-  .hero-section p {
-    font-size: 1.25rem;
-  }
+.step h4 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #666;
 }
 
 /* Testimonials Section */
 .testimonials {
-  padding: 3rem 0;
-  background-color: #a92828; /* Background color for the testimonials section */
+  padding: 4rem 0;
 }
 
 .testimonials h2 {
   font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: black; /* Color for the heading to stand out against the background */
-  text-align: center; /* Center-align heading */
-}
-
-.testimonial-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center-align testimonial cards */
+  margin-bottom: 3rem;
+  color: #333;
+  text-align: center; 
 }
 
 .testimonial {
-  background-color: #ffffff; /* White background for individual testimonials */
-  border-radius: 0.5rem; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  background-color: #ffffff; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   padding: 2rem;
   text-align: center;
-  margin: 1rem; /* Margin between cards */
-  flex: 1; /* Allow cards to grow and shrink as needed */
-  min-width: 250px; /* Minimum width for each card */
-  max-width: 300px; /* Maximum width for each card */
-  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
-}
-
-.testimonial:nth-child(1) {
-  background-color: #f8f9fa; /* Light grey background for the first card */
-}
-
-.testimonial:nth-child(2) {
-  background-color: #e9ecef; /* Slightly darker grey background for the second card */
-}
-
-.testimonial:nth-child(3) {
-  background-color: #dee2e6; /* Even darker grey background for the third card */
+  margin: 1rem; 
+  transition: transform 0.3s, box-shadow 0.3s; 
 }
 
 .testimonial:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
 
-.testimonial p {
-  font-size: 1rem;
-  color: #555; /* Darker text color for readability */
-  margin-bottom: 1rem;
+/* Responsive Design */
+@media (max-width: 1304px) {
+  #dogMeetupCarousel {
+      height: 60vh; /* Adjust height for smaller screens */
+  }
+
+  .carousel-caption {
+      bottom: 20%; /* Further adjust caption position */
+      font-size: 1rem; /* Smaller caption font size */
+  }
+
+  .btn-primary {
+      font-size: 1rem; /* Smaller button font size */
+      padding: 0.5rem 1rem; /* Smaller button padding */
+  }
 }
 
-.testimonial footer {
-  font-size: 0.875rem;
-  color: #888; /* Lighter color for the footer */
-  font-style: italic;
+@media (max-width: 768px) {
+  #dogMeetupCarousel {
+      height: 40vh; /* Further reduced height for mobile */
+  }
+
+  .feature-card img, .step img {
+      height: 120px; /* Smaller images on mobile */
+  }
+
+  .features, .how-it-works, .testimonials {
+      padding: 2rem 0; /* Reduce padding */
+  }
+
+  .features h2, .how-it-works h2, .testimonials h2 {
+      font-size: 2rem; /* Adjust heading size */
+  }
+
+  .testimonial {
+      margin: 1rem 0; /* Adjust margin for testimonials */
+  }
+
+  .step h4 {
+      font-size: 1.25rem; /* Smaller step heading */
+  }
+
+  .step p {
+      font-size: 0.9rem; /* Smaller step paragraph */
+  }
 }
 
+@media (max-width: 576px) {
+  .btn-primary {
+      padding: 0.5rem 1rem; /* Smaller button padding */
+      font-size: 1rem; /* Smaller button font size */
+  }
+}
