@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dog Care Essentials{% endblock %}
+
+{% block extra_styles %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/healthcare.css' %}">
+{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Dog Care Essentials</h1>
+    <h2>Your Guide to Caring for Your Dog</h2>
+</header>
+
+<section id="training">
+    <div class="section-wrapper">
+        <img src="{% static 'images/training.jpg' %}" alt="Training Your Dog" class="section-image">
+        <div class="section-text">
+            <h3>Training Your Dog</h3>
+            <ul>
+                <li><strong>Basic Commands:</strong>
+                    <p>Teaching your dog basic commands like "sit," "stay," and "come" is crucial for establishing control and ensuring safety. These commands help in managing your dog's behavior and enhance the bond between you and your pet.</p>
+                </li>
+                <li><strong>House Training:</strong>
+                    <p>House training your puppy involves establishing a routine for potty breaks and rewarding them for doing their business outside. Patience and consistency are key; accidents will happen, but staying positive helps your puppy learn faster.</p>
+                </li>
+                <li><strong>Socialization:</strong>
+                    <p>Socialization is essential for helping your dog become well-adjusted and confident. Expose your dog to various people, environments, and other animals from a young age.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="grooming">
+    <div class="section-wrapper reverse">
+        <div class="section-text">
+            <h3>Grooming Your Dog</h3>
+            <ul>
+                <li><strong>Brushing:</strong>
+                    <p>Regular brushing is important for all dogs, regardless of coat type. Brushing not only keeps your dog's coat healthy but also allows you to check for skin issues or parasites.</p>
+                </li>
+                <li><strong>Bathing:</strong>
+                    <p>Bathing your dog should be done as needed. Make bath time enjoyable by using treats and praise, and always ensure the water temperature is comfortable.</p>
+                </li>
+                <li><strong>Nail Trimming:</strong>
+                    <p>Regular nail trimming is crucial for your dog's comfort and health. If you're unsure, consider seeking professional help to learn how to do it safely.</p>
+                </li>
+            </ul>
+        </div>
+        <img src="{% static 'images/grooming.jpg' %}" alt="Grooming Your Dog" class="section-image">
+    </div>
+</section>
+
+<section id="nutrition">
+    <div class="section-wrapper">
+        <img src="{% static 'images/nutrition.jpg' %}" alt="Nutrition for Your Dog" class="section-image">
+        <div class="section-text">
+            <h3>Nutrition for Your Dog</h3>
+            <ul>
+                <li><strong>Balanced Diet:</strong>
+                    <p>Providing a balanced diet is crucial for your dog's overall health. Consult your veterinarian for recommendations on the best diet for your dog's age, size, and activity level.</p>
+                </li>
+                <li><strong>Hydration:</strong>
+                    <p>Always ensure your dog has access to fresh water. Proper hydration is essential for digestion and overall health.</p>
+                </li>
+                <li><strong>Treats:</strong>
+                    <p>Use treats sparingly, as they can add extra calories. Opt for healthy, low-calorie options to reward your dog.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="healthcare">
+    <div class="section-wrapper reverse">
+        <div class="section-text">
+            <h3>Healthcare for Your Dog</h3>
+            <ul>
+                <li><strong>Regular Vet Check-ups:</strong>
+                    <p>Regular veterinary check-ups are essential for maintaining your dog's health. Schedule visits annually or as recommended by your vet.</p>
+                </li>
+                <li><strong>Vaccinations:</strong>
+                    <p>Keep your dog’s vaccinations up to date to protect them from common diseases.</p>
+                </li>
+                <li><strong>Parasite Prevention:</strong>
+                    <p>Use preventive treatments for fleas, ticks, and heartworms as recommended by your veterinarian.</p>
+                </li>
+            </ul>
+        </div>
+        <img src="{% static 'images/healthcare.jpg' %}" alt="Healthcare for Your Dog" class="section-image">
+    </div>
+</section>
+
+{% endblock %}

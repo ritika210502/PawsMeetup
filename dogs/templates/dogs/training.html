@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dog Training Tutorials{% endblock %}
+
+{% block extra_styles %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/training.css' %}">
+{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Dog Training Tutorials</h1>
+    <h2>Learn the best training techniques for your dog</h2>
+</header>
+
+<section id="training-video-1">
+    <div class="training-wrapper">
+        <div class="training-text">
+            <h3>Basic Commands: Sit, Stay, and Come</h3>
+            <p>Teaching your dog basic commands like "sit," "stay," and "come" is crucial for good behavior. Watch this video to learn effective training methods.</p>
+        </div>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GAziMECDxD0" 
+                title="Basic Commands" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+<section id="training-video-2">
+    <div class="training-wrapper reverse">
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/7vOXWCewEYM" 
+                title="House Training" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="training-text">
+            <h3>House Training Your Puppy</h3>
+            <p>House training is essential for a well-behaved dog. This video will guide you through the steps to successfully house train your puppy.</p>
+        </div>
+    </div>
+</section>
+
+<section id="training-video-3">
+    <div class="training-wrapper">
+        <div class="training-text">
+            <h3>Leash Training: Walks Without Pulling</h3>
+            <p>Leash training is important for enjoyable walks with your dog. Learn how to stop your dog from pulling on the leash.</p>
+        </div>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/OwN0Ub3TWsk" 
+                title="Leash Training" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+<section id="training-video-4">
+    <div class="training-wrapper reverse">
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RZcb8pc7l3M" 
+                title="Socialization Training" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="training-text">
+            <h3>Socialization Training: Meet and Greet</h3>
+            <p>Socializing your dog is crucial for its mental well-being. Learn how to properly introduce your dog to other pets and people.</p>
+        </div>
+    </div>
+</section>
+
+<section id="training-video-5">
+    <div class="training-wrapper">
+        <div class="training-text">
+            <h3>Crate Training: A Safe Space</h3>
+            <p>Crate training provides a safe space for your dog while also helping with house training. Watch the video for step-by-step instructions.</p>
+        </div>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/hesi8WxLWVE" 
+                title="Crate Training" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -87,7 +87,7 @@ def edit_dog(request, dog_id):
             return redirect('profile')
     else:
         form=DogForm(instance=dog)
-        
+
     return render(request,'dogs/edit_dog.html',{'form':form,'dog':dog})
 
 @login_required
@@ -98,7 +98,11 @@ def delete_dog(request, dog_id):
         return redirect('profile')
 
     return render(request, 'dogs/delete_dog.html', {'dog': dog})
-        
+
+def view_dog_profile(request, id):
+    dog = get_object_or_404(Dog, id=id)
+    return render(request, 'dogs/dog_profile.html', {'dog': dog})
+
 
 def dog_list(request):
     dogs = Dog.objects.all()
@@ -159,3 +163,10 @@ def ai_match_dogs(request):
     else:
         messages.info(request, 'You have not added any dogs yet. Please add a dog to view matches.')
         return redirect('add_dog')
+
+
+def healthcare(request):
+    return render(request,'dogs/healthcare.html')
+
+def training(request):
+    return render(request,'dogs/training.html')

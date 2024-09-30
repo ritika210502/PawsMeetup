@@ -1,23 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/all_dogs.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<h1 class="mb-4">All Dogs</h1>
-<div class="row">
-    {% for dog in dogs %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            <img src="{% if dog.photo %}{{ dog.photo.url }}{% else %}{% static 'images/default_dog_image.png' %}{% endif %}" class="card-img-top" alt="{{ dog.name }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ dog.name }}</h5>
-                <p class="card-text">Breed: {{ dog.breed.name }}</p>
-                <p class="card-text">Size: {{ dog.size }}</p>
-                <a href="{% url 'ai_match_dogs' dog.id %}" class="btn btn-primary">Find Matches</a>
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Meet the Paws</h1>
+    <div class="row justify-content-center">
+        {% for dog in dogs %}
+        <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+            <div class="card shadow-sm dog-card text-center">
+                <div class="card-header p-0">
+                    <img src="{% if dog.photo %}{{ dog.photo.url }}{% else %}{% static 'images/default_dog_image.png' %}{% endif %}" class="card-img-top dog-img" alt="{{ dog.name }}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ dog.name }}</h5>
+                    <p class="card-text"><i class="fas fa-paw"></i> {{ dog.breed.name }}</p>
+                    <p class="card-text"><i class="fas fa-bone"></i> {{ dog.age }}years</p>
+                    <p class="card-text"><i class="fas fa-dog"></i> {{ dog.size}}</p>
+
+                    <div class="mt-auto">
+                        <a href="{% url 'view_dog_profile' dog.id %}" class="btn btn-primary btn-block mb-2"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#" class="btn btn-success btn-block"><i class="fas fa-comments"></i> Chat</a>
+                    </div>
+                </div>
             </div>
         </div>
+        {% empty %}
+        <p class="text-center">No dogs found.</p>
+        {% endfor %}
     </div>
-    {% empty %}
-    <p>No dogs found.</p>
-    {% endfor %}
 </div>
 {% endblock %}

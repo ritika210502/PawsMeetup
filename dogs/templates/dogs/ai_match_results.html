@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/all_dogs.css' %}">
+
+{% endblock %}
+
 {% block content %}
 <div class="container">
   {% if target_dog %}
@@ -22,22 +29,27 @@
 
     <div class="row">
       {% for dog in matched_dogs %}
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <!-- Ensure photo is provided; otherwise, fallback to a default image -->
-          <img src="{{ dog.photo.url }}" class="card-img-top" alt="{{ dog.name }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ dog.name }}</h5>
-            <p class="card-text">Breed: {{ dog.breed }}</p>
-            <p class="card-text">Size: {{ dog.size }}</p>
-            <p class="card-text">Energy Level: {{ dog.energy_level }}</p>
-            <p class="card-text">Temperament: {{ dog.temperament }}</p>
-          </div>
+      <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+        <div class="card shadow-sm dog-card text-center">
+            <div class="card-header p-0">
+                <img src="{% if dog.photo %}{{ dog.photo.url }}{% else %}{% static 'images/default_dog_image.png' %}{% endif %}" class="card-img-top dog-img" alt="{{ dog.name }}">
+            </div>
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ dog.name }}</h5>
+                <p class="card-text"><i class="fas fa-paw"></i> {{ dog.breed.name }}</p>
+                <p class="card-text"><i class="fas fa-bone"></i> {{ dog.age }}years</p>
+                <p class="card-text"><i class="fas fa-dog"></i> {{ dog.size}}</p>
+
+                <div class="mt-auto">
+                    <a href="{% url 'view_dog_profile' dog.id %}" class="btn btn-primary btn-block mb-2"><i class="fas fa-user"></i> Profile</a>
+                    <a href="#" class="btn btn-success btn-block"><i class="fas fa-comments"></i> Chat</a>
+                </div>
+            </div>
         </div>
-      </div>
-      {% empty %}
-      <p>No matching dogs found.</p>
-      {% endfor %}
+    </div>
+    {% empty %}
+    <p class="text-center">No dogs found.</p>
+    {% endfor %}
     </div>
   {% else %}
     <h1 class="mt-4">No Dog Found</h1>

@@ -1,0 +1,72 @@
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #4CAF50;
+    border-bottom: 2px solid #ddd;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+header h2 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #666;
+}
+
+.training-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.training-wrapper.reverse {
+    flex-direction: row-reverse;
+}
+
+.training-text {
+    flex: 1;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.training-text h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.training-text p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.video-container {
+    flex: 1;
+    max-width: 560px;
+    padding: 20px;
+    text-align: center;
+}
+
+video-container iframe {
+    width: 100%;
+    height: auto;
+}
+
+
+@media screen and (max-width: 768px) {
+    .training-wrapper {
+        flex-direction: column;
+    }
+
+    .training-wrapper.reverse {
+        flex-direction: column;
+    }
+
+    .video-container, .training-text {
+        max-width: 100%;
+    }
+}
