@@ -13,9 +13,6 @@ from .forms import CustomUserCreationForm
 def home(request):
     return render(request, 'home.html')
 
-def password(request):
-    return render(request,'registration/password_reset_form.html')
-
 # Create your views here.
 def register(request):
     if(request.method=="POST"):
@@ -170,3 +167,6 @@ def healthcare(request):
 
 def training(request):
     return render(request,'dogs/training.html')
+
+def catch_mouse(request):
+    return render(request,'games/catch_mouse.html')

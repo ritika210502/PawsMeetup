@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Catch the Mouse Game{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/catch_mouse.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <h1>Catch the Mouse!</h1>
+    <p>Click on the mouse to catch it!</p>
+
+    <div id="game-area">
+        <img id="mouse" src="{% static 'images/mouse.png' %}" alt="Mouse">
+        <div id="score">Score: 0</div>
+    </div>
+
+    <button id="start-button">Start Game</button>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/catch_mouse.js' %}"></script>
+{% endblock %}

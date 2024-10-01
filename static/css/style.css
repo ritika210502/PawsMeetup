@@ -1,7 +1,137 @@
+/* Main Container */
 .main-container {
     background-size: cover;  
     background-position: center;  
-    padding: 20px; 
-    margin: 20px;
-    align-content: center;
+    padding: 40px; 
+    margin-top: 80px; /* Adjusted margin for header overlap */
+}
+
+/* Header and Navbar */
+.header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dedede;
+}
+
+.navbar {
+    background-color: #343a40 !important; /* Darker shade of background */
+    padding: 15px;
+}
+
+.navbar .nav-link {
+    color: #fff !important; /* White color for the nav links */
+    font-size: 1rem; /* Adjust the font size */
+}
+
+.navbar .nav-link:hover {
+    color: #ff4d00 !important; /* Orange color on hover */
+}
+
+.navbar .navbar-brand span {
+    color: #ff4d00; /* Branding text in orange */
+    font-size: 1.25rem; /* Slightly larger font size for branding */
+    font-weight: bold;
+}
+
+/* Force the logo size */
+.navbar-brand .logo {
+    height: 40px !important; /* Enforce logo height */
+    width: auto; /* Maintain aspect ratio */
+    max-height: 40px; /* Ensure it doesn't exceed this height */
+}
+
+/* Ensure no padding or margin is causing overflow */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* Navbar Nav Links */
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff; /* Ensure the color is white */
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff4d00; /* Hover effect */
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #ff4d00;
+    border: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e04300; /* Darker hover effect */
+}
+
+/* Button for Login/Logout */
+.navbar .btn-outline-light {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: #ff4d00;
+    border-color: #ff4d00;
+}
+
+/* Footer Styles */
+.footer {
+    background: linear-gradient(to right, #ff4d00, #333); /* Gradient background */
+    color: white;
+}
+
+.footer h5 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer ul li a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+    color: #ff4d00;
+}
+
+.footer .fab {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer .fab:hover {
+    color: #ff4d00;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        padding: 7px 14px;
+    }
 }
