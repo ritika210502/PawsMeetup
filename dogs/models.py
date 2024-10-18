@@ -43,8 +43,8 @@ class Dog(models.Model):
     update_at=models.DateTimeField(auto_now=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-
+    owner = models.ForeignKey(User, on_delete=models.PROTECT,blank=False, null=False,)
+    
 
     # def save(self, *args, **kwargs):
     #     if self.address:
@@ -61,4 +61,30 @@ class Dog(models.Model):
     def age(self):
         today=date.today()
         age=today.year-self.dob.year -((today.month,today.day)< (self.dob.month,self.dob.day))
-        return age
+        return age if age > 0 else 1
+
+class Post(models.Model):
+    content=models.TextField()
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    create_at=models.DateField(auto_now_add=True)
+    updated_at=models.DateField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.content[:20]}..."
+
+class Comment(models.Model):
+    content=models.TextField()
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="comments")
+    post=models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    create_at=models.DateField(auto_now_add=True)
+    updated_at=models.DateField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.content[:20]}..."
+
+class Like(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="likes")
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="likes")
+    def __str__(self):
+        return f"{self.user.username} liked {self.post.content[:20]}..."
+

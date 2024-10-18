@@ -15,7 +15,7 @@
         <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
             <div class="card shadow-sm dog-card text-center">
                 <div class="card-header p-0">
-                    <img src="{% if dog.photo %}{{ dog.photo.url }}{% else %}{% static 'images/default_dog_image.png' %}{% endif %}" class="card-img-top dog-img" alt="{{ dog.name }}">
+                    <img src="{% if dog.photo %}{{ dog.photo.url }}{% else %}{% static 'images/default_dog_image.jpg' %}{% endif %}" class="card-img-top dog-img" alt="{{ dog.name }}">
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ dog.name }}</h5>
@@ -25,7 +25,9 @@
 
                     <div class="mt-auto">
                         <a href="{% url 'view_dog_profile' dog.id %}" class="btn btn-primary btn-block mb-2"><i class="fas fa-user"></i> Profile</a>
+                        {% comment %} <a href="{% url 'chat:start_chat' user.id %}" class="btn btn-success btn-block mb-2"><i class="fas fa-chat"></i> Message Owner</a> {% endcomment %}
                         <a href="#" class="btn btn-success btn-block"><i class="fas fa-comments"></i> Chat</a>
+
                     </div>
                 </div>
             </div>

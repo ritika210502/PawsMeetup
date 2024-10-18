@@ -106,34 +106,6 @@ def dog_list(request):
     return render(request, 'dogs/dog_list.html', {'dogs': dogs})
 
 # @login_required
-# def ai_match_dogs(request,dog_id):
-
-#     try:
-#         dog_id = int(dog_id)
-#     except ValueError:
-#         return HttpResponseBadRequest("Invalid dog ID")
-
-#     target_dog=get_object_or_404(Dog,id=dog_id)
-#     dogs=preprocess_data()
-#     model,scaler=train_knn_model(dogs)
-#     matched_dogs_df = match_dogs_knn(dog_id, model, scaler)
-
-#     # Convert DataFrame to a list of dictionaries
-#     matched_dogs = matched_dogs_df.to_dict(orient='records')
-
-#     # print("Target Dog:", target_dog)
-#     # print(matched_dogs_df.dtypes)
-
-
-#     # Prepare context
-#     context = {
-#         'target_dog': target_dog,
-#         'matched_dogs': matched_dogs
-#     }
-
-#     return render(request, 'dogs/ai_match_results.html', context)
-
-@login_required
 def ai_match_dogs(request):
     # Check if the user has added any dogs
     user_dogs = Dog.objects.filter(owner=request.user)
@@ -147,8 +119,9 @@ def ai_match_dogs(request):
         model, scaler = train_knn_model(dogs)
         matched_dogs_df = match_dogs_knn(target_dog.id, model, scaler)
 
-        # Convert DataFrame to a list of dictionaries
-        matched_dogs = matched_dogs_df.to_dict(orient='records')
+        # Fetch matched Dog instances based on IDs in the matched_dogs_df
+        matched_dogs_ids = matched_dogs_df['id'].tolist()  # Assuming 'id' is the column name for dog IDs
+        matched_dogs = Dog.objects.filter(id__in=matched_dogs_ids)
 
         # Prepare context
         context = {
@@ -161,7 +134,6 @@ def ai_match_dogs(request):
         messages.info(request, 'You have not added any dogs yet. Please add a dog to view matches.')
         return redirect('add_dog')
 
-
 def healthcare(request):
     return render(request,'dogs/healthcare.html')
 
@@ -170,3 +142,30 @@ def training(request):
 
 def catch_mouse(request):
     return render(request,'games/catch_mouse.html')
+
+
+# def chat_room(request, room_name):
+#     return render(request, 'dog/room.html', {
+#         'room_name': room_name
+#     })
+
+def feed(request):
+    pass
+
+def post_create(request):
+    pass
+
+def post_delete(request):
+    pass
+
+def comment_create(request):
+    pass
+
+def comment_delete(request):
+    pass
+
+def likes(request):
+    pass
+
+def search_user(request):
+    pass

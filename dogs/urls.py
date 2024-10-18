@@ -14,6 +14,8 @@ urlpatterns = [
     path('delete_dog/<int:dog_id>/',views.delete_dog,name='delete_dog'),
     path('dogs/profile/<int:id>/', views.view_dog_profile, name='view_dog_profile'),
     path('catch_mouse',views.catch_mouse,name='catch_mouse'),
+    # path('chat/<str:room_name>/', views.room, name='room'),
+
 
     #  path('ai-match/<int:dog_id>/', views.ai_match_dogs, name='ai_match_dogs'),
 ]
