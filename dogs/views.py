@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .forms import DogForm
-from .models import Dog
+from .forms import DogForm,PostForm,CommentForm,UsernameChangeForm
+from .models import Dog,Post,Like,Comment
 from .matching import match_dogs_knn,preprocess_data,train_knn_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login,logout as auth_logout
@@ -51,9 +51,14 @@ def profile(request):
         else:
             form = DogForm()
 
+    posts = Post.objects.filter(user=request.user)
+    likes = Like.objects.filter(user=request.user)
+
     context = {
         'form': form,
-        'dog': dog
+        'dog': dog,
+        'posts':posts,
+        'likes':likes
     }
 
     return render(request, 'registration/profile.html', context)
@@ -150,22 +155,58 @@ def catch_mouse(request):
 #     })
 
 def feed(request):
-    pass
+    posts=Post.objects.all().order_by('-create_at')
+    return render(request, 'dogs/feeds.html', {'posts': posts})
 
+@login_required
 def post_create(request):
-    pass
+    if request.method=='POST':
+        form=PostForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('feed')
+    else:
+        form=PostForm()
+    return render(request,'dogs/post_create.html',{'form':form})
 
-def post_delete(request):
-    pass
+@login_required
+def post_delete(request,pk):
+    post=get_object_or_404(Post,pk=pk,user=request.user)
+    post.delete()
+    return redirect('profile')
 
-def comment_create(request):
-    pass
+@login_required
+def comment_create(request,pk):
+    post=get_object_or_404(Post,pk=pk)
+    if request.method=='POST':
+        form=CommentForm(request.POST)
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.user=request.user
+            comment.post=post
+            comment.save()
+            return redirect('feed')
+    else:
+        form=CommentForm()
+    return render(request,'dogs/comment_create.html',{'form':form,'post':post})
 
-def comment_delete(request):
-    pass
+@login_required
+def comment_delete(request,pk):
+    comment=get_object_or_404(Comment,pk=pk,user=request.user)
+    comment.delete()
+    return redirect('feed')
 
-def likes(request):
-    pass
+@login_required
+def like(request,pk):
+    post = get_object_or_404(Post, pk=pk)
+    like_obj, created = Like.objects.get_or_create(user=request.user, post=post)
+    if not created:
+        like_obj.delete()
+    like_count=Like.objects.filter(post=post).count()
+    return redirect('feed')
+
 
 def search_user(request):
     pass

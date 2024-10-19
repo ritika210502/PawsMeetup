@@ -14,6 +14,14 @@ urlpatterns = [
     path('delete_dog/<int:dog_id>/',views.delete_dog,name='delete_dog'),
     path('dogs/profile/<int:id>/', views.view_dog_profile, name='view_dog_profile'),
     path('catch_mouse',views.catch_mouse,name='catch_mouse'),
+
+    path('feed',views.feed,name='feed'),
+    path('post/create',views.post_create,name='post_create'),
+    path('post/<int:pk>/delete/',views.post_delete,name='post_delete'),
+    path('post/<int:pk>/comment_create',views.comment_create,name='comment_create'),
+    path('comment/<int:pk>/delete',views.comment_delete,name='comment_delete'),
+    path('post/<int:pk>/like',views.like,name='like'),
+
     # path('chat/<str:room_name>/', views.room, name='room'),
 
 

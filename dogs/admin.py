@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Dog,Breed
+from .models import Dog,Breed,Post,Comment,Like
 # Register your models here.
 
 class DogAdmin(admin.ModelAdmin):
@@ -11,5 +11,8 @@ class BreedAdmin(admin.ModelAdmin):
     list_display=('name',)
 
 admin.site.register(Breed,BreedAdmin)
+admin.site.register(Post)
+admin.site.register(Comment)
+admin.site.register(Like)
 
 
