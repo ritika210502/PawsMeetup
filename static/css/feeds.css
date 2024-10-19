@@ -1,0 +1,200 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f6d7a9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Header Styles */
+.card-header {
+    background-color: #007bff;
+    color: #ffffff;
+    border-bottom: 1px solid #007bff;
+    padding: 15px;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-header img {
+    border: 2px solid #ff5733;
+    max-width: 100%; /* Ensure the image is responsive */
+    height: auto;
+}
+
+.card-header strong {
+    font-size: 1.2rem;
+    color: #ff5733;
+}
+
+/* Card Body Styles */
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #007bff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 30px;
+    padding: 8px 25px;
+    font-weight: bold;
+}
+
+.btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+/* Comments Section Styles */
+.comments-section {
+    background-color: #fff3e0;
+    border-top: 1px solid #e9ecef;
+    padding: 15px;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.comments-section h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.comments-section .card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Profile Image Styles */
+.rounded-circle {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #ff5733;
+}
+
+.comments-section .rounded-circle {
+    width: 40px;
+    height: 40px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .card-header, .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-header img {
+        margin-bottom: 10px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        width: 100%; /* Full-width buttons on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        padding: 10px; /* Adjust padding for smaller buttons */
+    }
+}
+
+/* Background Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Image and Video Styles */
+.card-body img {
+    max-width: 100%;  /* Ensure the image does not exceed the card width */
+    max-height: 300px; /* Limit the maximum height of the image */
+    height: auto;      /* Maintain aspect ratio */
+    border-radius: 0.5rem; /* Optional: add rounded corners */
+    margin: 10px 0;   /* Optional: add spacing around images */
+    object-fit: cover; /* Optional: cover the area without distortion */
+}
+
+.card-body video {
+    max-width: 100%;  /* Ensure the video does not exceed the card width */
+    max-height: 300px; /* Limit the maximum height of the video */
+    height: auto;      /* Maintain aspect ratio */
+    border-radius: 0.5rem; /* Optional: add rounded corners */
+    margin: 10px 0;   /* Optional: add spacing around videos */
+    object-fit: cover; /* Optional: cover the area without distortion */
+}

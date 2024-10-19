@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404,HttpResponse
 from .forms import DogForm,PostForm,CommentForm,UsernameChangeForm
 from .models import Dog,Post,Like,Comment
 from .matching import match_dogs_knn,preprocess_data,train_knn_model
@@ -155,13 +155,15 @@ def catch_mouse(request):
 #     })
 
 def feed(request):
-    posts=Post.objects.all().order_by('-create_at')
-    return render(request, 'dogs/feeds.html', {'posts': posts})
+    posts=Post.objects.all().order_by('-created_at')
+    dog = Dog.objects.get(owner=request.user) 
+
+    return render(request, 'dogs/feeds.html', {'posts': posts,'dog':dog})
 
 @login_required
 def post_create(request):
     if request.method=='POST':
-        form=PostForm(request.POST)
+        form=PostForm(request.POST,request.FILES)
         if form.is_valid():
             post=form.save(commit=False)
             post.user = request.user
@@ -210,3 +212,11 @@ def like(request,pk):
 
 def search_user(request):
     pass
+
+def get_profile_photo(request,owner_id):
+    obj=get_object_or_404(Dog,owner_id=owner_id)
+    if obj.photo:
+        image_data = obj.photo.read()
+        return HttpResponse(image_data, content_type="image/jpeg")
+    else:
+        return HttpResponse(status=404)  

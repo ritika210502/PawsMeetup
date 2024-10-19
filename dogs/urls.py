@@ -21,6 +21,7 @@ urlpatterns = [
     path('post/<int:pk>/comment_create',views.comment_create,name='comment_create'),
     path('comment/<int:pk>/delete',views.comment_delete,name='comment_delete'),
     path('post/<int:pk>/like',views.like,name='like'),
+    path('get_profile_photo/<int:owner_id>',views.get_profile_photo,name='get_profile_photo')
 
     # path('chat/<str:room_name>/', views.room, name='room'),
 
