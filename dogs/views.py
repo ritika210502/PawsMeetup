@@ -7,8 +7,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login,logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.conf import settings
+from django.utils.html import strip_tags
 from .forms import CustomUserCreationForm
 from django.http import JsonResponse
+from django.urls import reverse
+
 
 
 def home(request):
@@ -243,7 +249,40 @@ def send_message(request):
         receiver_id = request.POST.get('receiver_id')
         receiver = get_object_or_404(Dog, id=receiver_id)
         message_text = request.POST.get('message')
+        timestamp = timezone.localtime(timezone.now()).strftime("%I:%M %p %d/%m/%Y") 
 
-        Message.objects.create(sender=sender, receiver=receiver, message=message_text)
-        return JsonResponse({'status': 'success', 'message': 'Message sent!'})
+        # Create the message
+        message = Message.objects.create(sender=sender, receiver=receiver, message=message_text)
+
+        # Prepare email content
+        email_subject = "You have a new message!"
+        email_message = render_to_string('dogs/email_notification.html', {
+            'receiver': receiver.owner,  # Receiver's name
+            'sender_dog': sender.name,   # Sender's dog name
+            'message_text': message_text,  # Actual message text
+            'chat_url': request.build_absolute_uri(reverse('chat', args=[receiver.id])),  # Chat URL
+        })
+
+        # Send the email with HTML content
+        send_mail(
+            email_subject,
+            email_message, 
+            'no-reply@pawsmeetup.com',
+            [receiver.owner.email],
+            fail_silently=False,
+            html_message=email_message  
+        )
+
+        # Return success response with message details for UI update
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Message sent!',
+            'sender_name': sender.name,  
+            'message_text': message_text,
+            'timestamp': timestamp
+ 
+        })
+
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+

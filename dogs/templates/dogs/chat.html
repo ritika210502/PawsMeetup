@@ -1,35 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
+
+    <!-- Load static files -->
+    {% load static %}
+
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Chat with {{ target_dog.name }}</h1>
+    <div class="chat-container">
+        <h1>Chat with {{ target_dog.name }}</h1>
 
-    <div id="chat-box">
-        {% for message in messages %}
-            <p><strong>{{ message.sender.name }}:</strong> {{ message.message }}</p>
-        {% endfor %}
+        <div id="chat-box" class="chat-box">
+            {% for message in messages %}
+                <div class="message">
+                    <p><strong>{{ message.sender.name }}:</strong> {{ message.message }}</p>
+                    <span class="timestamp">{{ message.timestamp|date:"H:i d/m/Y" }}</span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <form id="chat-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="receiver_id" value="{{ target_dog.id }}">
+            <textarea name="message" id="message" rows="3" placeholder="Type your message"></textarea><br>
+            <button type="submit">Send</button>
+        </form>
     </div>
-
-    <form id="chat-form" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="receiver_id" value="{{ target_dog.id }}">
-        <textarea name="message" id="message" rows="3" placeholder="Type your message"></textarea><br>
-        <button type="submit">Send</button>
-    </form>
-    
 
     <script>
         $("#chat-form").on("submit", function(e) {
             e.preventDefault();
-        
+            
             const formData = $(this).serialize();
-        
+            
             // Get CSRF token from the DOM
             const csrfToken = $("input[name='csrfmiddlewaretoken']").val();
-        
+            
             $.ajax({
                 type: "POST",
                 url: "{% url 'send_message' %}",
@@ -39,7 +52,19 @@
                 },
                 success: function(response) {
                     if (response.status === 'success') {
-                        location.reload();
+                        // Dynamically append the new message to the chat box
+                        const newMessageHtml = `
+                            <div class="message">
+                                <p><strong>${response.sender_name}:</strong> ${response.message_text}</p>
+                                <span class="timestamp">${response.timestamp}</span>
+                            </div>`;
+                        $("#chat-box").append(newMessageHtml);
+        
+                        // Scroll to the bottom of the chat box
+                        $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+        
+                        // Clear the message input
+                        $("#message").val('');
                     } else {
                         alert(response.message);
                     }
