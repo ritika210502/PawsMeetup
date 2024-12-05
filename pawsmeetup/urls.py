@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('dogs.urls')),  
     path('dogs/', include('dogs.urls')),
     path('accounts/', include('django.contrib.auth.urls')),  # Authentication URLs
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

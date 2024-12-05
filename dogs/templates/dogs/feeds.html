@@ -19,7 +19,8 @@
         <div class="card-header d-flex align-items-center">
             <img src="{% url 'get_profile_photo' post.user_id %}" alt="User Profile" class="rounded-circle">
             <div class="ml-2">
-                <strong>{{ post.user.username }}</strong>
+                {% comment %} <a href="/dogs/profile/{{ post.user.id }}/" class="text-dark"> {% endcomment %}
+                    <strong>{{ post.user.username }}</strong>
                 <p class="text-muted mb-0" style="font-size: 0.9rem;">Posted on {{ post.create_at }}</p>
             </div>
         </div>

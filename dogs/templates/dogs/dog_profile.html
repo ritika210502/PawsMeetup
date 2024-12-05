@@ -43,7 +43,7 @@
                         <p><strong>Vaccination Status:</strong> {{ dog.vaccination_status|yesno:"Yes,No" }}</p>
                         <p><strong>Bio:</strong> {{ dog.bio }}</p>
                         <div class="d-flex justify-content-center mt-4">
-                            <a href="#" class="btn btn-success">Chat</a>
+                            <a href="{% url 'chat' dog.id %}" class="btn btn-success">Chat</a>
                         </div>                        
                         
                     </div>

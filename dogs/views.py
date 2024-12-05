@@ -1,13 +1,14 @@
 from django.shortcuts import render,redirect,get_object_or_404,HttpResponse
 from .forms import DogForm,PostForm,CommentForm,UsernameChangeForm
-from .models import Dog,Post,Like,Comment
+from .models import Dog,Post,Like,Comment,Message
+from django.db import models
 from .matching import match_dogs_knn,preprocess_data,train_knn_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login,logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm
-
+from django.http import JsonResponse
 
 
 def home(request):
@@ -220,3 +221,29 @@ def get_profile_photo(request,owner_id):
         return HttpResponse(image_data, content_type="image/jpeg")
     else:
         return HttpResponse(status=404)  
+
+
+def chat_view(request, dog_id):
+    target_dog = get_object_or_404(Dog, id=dog_id)
+    current_dog = Dog.objects.get(owner=request.user)
+    messages = Message.objects.filter(
+        (models.Q(sender=current_dog, receiver=target_dog) |
+         models.Q(sender=target_dog, receiver=current_dog))
+    ).order_by('timestamp')
+
+    return render(request, 'dogs/chat.html', {
+        'current_dog': current_dog,
+        'target_dog': target_dog,
+        'messages': messages
+    })
+
+def send_message(request):
+    if request.method == 'POST':
+        sender = Dog.objects.get(owner=request.user)
+        receiver_id = request.POST.get('receiver_id')
+        receiver = get_object_or_404(Dog, id=receiver_id)
+        message_text = request.POST.get('message')
+
+        Message.objects.create(sender=sender, receiver=receiver, message=message_text)
+        return JsonResponse({'status': 'success', 'message': 'Message sent!'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Chat with {{ target_dog.name }}</h1>
+
+    <div id="chat-box">
+        {% for message in messages %}
+            <p><strong>{{ message.sender.name }}:</strong> {{ message.message }}</p>
+        {% endfor %}
+    </div>
+
+    <form id="chat-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="receiver_id" value="{{ target_dog.id }}">
+        <textarea name="message" id="message" rows="3" placeholder="Type your message"></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+    
+
+    <script>
+        $("#chat-form").on("submit", function(e) {
+            e.preventDefault();
+        
+            const formData = $(this).serialize();
+        
+            // Get CSRF token from the DOM
+            const csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+        
+            $.ajax({
+                type: "POST",
+                url: "{% url 'send_message' %}",
+                data: formData,
+                headers: {
+                    "X-CSRFToken": csrfToken  // Add the CSRF token to the headers
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

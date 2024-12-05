@@ -111,3 +111,12 @@ class Like(models.Model):
     def __str__(self):
         return f"{self.user.username} liked {self.post.content[:20]}..."
 
+
+class Message(models.Model):
+    sender = models.ForeignKey(Dog,on_delete=models.CASCADE, related_name='sent_messages')
+    receiver = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name='received_messages')
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.sender.name} -> {self.receiver.name}: {self.message[:20]}"
