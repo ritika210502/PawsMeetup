@@ -3,11 +3,11 @@
 PawsMeetup is a web application designed to help dog owners find and connect with other dogs for socialization, playdates, and potential breeding. The platform allows users to create profiles for their dogs, match them with similar dogs based on various criteria, and start conversations to arrange playdates or breedings.
 
 ## Features
- -Dog Profile Management: Users can create and update profiles for their dogs, including details such as breed, age, size, temperament, and energy level.
- -AI-Powered Dog Matching: The platform uses an AI-based matching algorithm to recommend suitable dogs for breeding or playdates.
- -Messaging System: Chat functionality enables users to communicate with other dog owners to arrange meetups.
- -User Authentication: Secure registration and login system for dog owners.
- -Responsive Design: Fully responsive frontend to ensure smooth experience across various devices.
+ !.Dog Profile Management: Users can create and update profiles for their dogs, including details such as breed, age, size, temperament, and energy level.
+ 2.AI-Powered Dog Matching: The platform uses an AI-based matching algorithm to recommend suitable dogs for breeding or playdates.
+ 3.Messaging System: Chat functionality enables users to communicate with other dog owners to arrange meetups.
+ 4.User Authentication: Secure registration and login system for dog owners.
+ 5.Responsive Design: Fully responsive frontend to ensure smooth experience across various devices.
 ## Tech Stack
 ### Backend: Django, Django REST Framework
 ### Frontend: React, HTML, CSS, Bootstrap
